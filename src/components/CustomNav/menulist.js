@@ -17,6 +17,12 @@ export default[
     icon:'goods',
     path:'/admin/goods',
   },
+  {
+    key:'4',
+    title:"商品类别",
+    icon:'goods',
+    path:'/admin/goodskind',
+  },
 
   {
     key:'8',
