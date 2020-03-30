@@ -94,9 +94,13 @@ class Goods extends Component {
   // 获取商品列表（分页）
   getListData = async () => {
     let { page, pageSize } = this.state
-    // console.log(page,pageSize)
-    let { err, msg, list, allCount } = await goodsApi.list(page, pageSize)
+    console.log(page,pageSize)
+    let result =await goodsApi.list(page, pageSize)
+    console.log(result)
+    let { err, msg, list, allCount } =result
+    // let { err, msg, list, allCount } = await goodsApi.list(page, pageSize)
     if (err !== 0) { return message.error(msg) }
+    // console.log(list)
     this.setState({ list, allCount })
   }
   componentDidMount() {

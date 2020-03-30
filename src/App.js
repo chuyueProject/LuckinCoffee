@@ -14,7 +14,7 @@ function App() {
   return (
     <HashRouter>
       <Route path='/login' component={Login}></Route>
-      <Route path='/admin' render={() => {
+      <Route path='/admin' component={() => {
         return (
           <Admin>
             <Route path='/admin/user' component={User}></Route>
