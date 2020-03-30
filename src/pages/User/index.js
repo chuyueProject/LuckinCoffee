@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import {Card ,Table,Button,Modal,notification,Spin,Popconfirm,message} from 'antd'
 import style from './index.module.less'
-import api from '../../api/admin.js' 
+import api from '../../api/admin' 
+
 class Admins extends Component {
   state = { 
     dataSource:[],
@@ -19,9 +20,9 @@ class Admins extends Component {
         key: 'mail',
       },
       {
-        title:'pass',
-        dataIndex:'pass',
-        key:'pass'
+        title: 'pass',
+        dataIndex: 'pass',
+        key: 'pass',
       },
       {
         title:'操作',
@@ -61,8 +62,8 @@ class Admins extends Component {
     // 做添加接口
     // 关闭模态框
     // 刷新界面
-    let mail = this.refs.us.value
-    let pass= this.refs.ps.value
+    let mail= this.refs.us.value
+    let pass = this.refs.ps.value
     let result = await api.add({mail,pass})
     if (result.code!==0){ return notification.error({description:'管理员添加失败，请详细检查传输',message:'错误',duration:1.5})}
     notification.success({description:'管理员添ok，模态框即将关闭',message:'成功',duration:1.5})
@@ -73,7 +74,7 @@ class Admins extends Component {
     this.setState({visible:false})
    }
    //刷新列表数据
-   refreshList=async ()=>{
+   refreshList=async()=>{
     this.setState({spinning:true})
     let result = await api.getUserList()
     console.log(result)
