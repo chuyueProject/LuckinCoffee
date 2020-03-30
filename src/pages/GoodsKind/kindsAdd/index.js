@@ -11,9 +11,10 @@ class kindsAdd extends Component{
     submit=()=>{
        kindsApi.kindAdd(this.state)
        .then((data)=>{
-           let {code,msg}=data.data
-           if(code){return message.error(msg)}
-          console.log(data)
+           console.log(data)
+           //let {code,msg}=data.data
+           //if(code){return message.error(msg)}
+         // console.log(data)
            this.props.history.replace('/admin/goodskind')
        })
     }

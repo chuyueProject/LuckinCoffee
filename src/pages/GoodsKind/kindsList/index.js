@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import { Table, Divider, Tag, Popconfirm, Button, message, Card } from 'antd';
+import { Table Tag, Popconfirm, Button, message, Card ,Spin} from 'antd';
 import kindsApi from '../../../api/kinds'
 class GoodsKind extends Component {
   state = {  
+    spinning: false,
     list :[],
     columns:[
       {
@@ -25,11 +26,12 @@ class GoodsKind extends Component {
               <Popconfirm title='你确定要删除吗' onConfirm={()=>{
                 {this.delKinds(h._id)}
                
-              }}>
-                <Button type='danger' size='small' onClick={()=>{
-                  
-                  this.props.history.replace(`/admin/goodskind`)
-                }}>删除</Button>
+              }}
+              onCancel={()=>{
+                message.error('取消删除')
+              }}
+              >
+                <Button type='danger'  size='small' >删除</Button>
               </Popconfirm>
               <Button type='primary' size='small' onClick={()=>{
                 this.props.history.replace(`/admin/kindsupdata/${h._id}`)
@@ -43,23 +45,26 @@ class GoodsKind extends Component {
     ]
   }
   componentDidMount(){
-    this.kindsList()
+    this.refreshList()
 }
-
-  kindsList=()=>{
-    kindsApi.kindAll()
-    .then((data)=>{
-     
-      let list=data.data.data
-      this.setState({list})
-    })
-  }
-
-
   delKinds=(_id)=>{
     kindsApi.kindDel(_id)
     .then((data)=>{
       console.log(data)
+      let {err,msg}=data
+      if(err!== 0){return false}
+      this.refreshList()
+    })
+  }
+
+  //刷新数据列表
+  refreshList=()=>{
+    this.setState({spinning:true})
+    kindsApi.kindAll()
+    .then((data)=>{
+      console.log(data)
+      let list=data.data
+      this.setState({list,spinning:false})
     })
   }
   render=()=> { 
@@ -71,7 +76,10 @@ class GoodsKind extends Component {
             this.props.history.push('/admin/kindsadd')
           }}>添加商品列表</Button>
         </Card>
-       <Table  rowKey='_id' pagination={false} scroll={{y:300}} dataSource={list} columns={columns} />
+        <Spin spinning={this.state.spinning}>
+            <Table  rowKey='_id' pagination={false} scroll={{y:300}} dataSource={list} columns={columns} />
+        </Spin>
+     
       </div>
      )
   }

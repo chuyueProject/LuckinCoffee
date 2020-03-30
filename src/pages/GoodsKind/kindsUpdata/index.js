@@ -10,7 +10,7 @@ class GoodsUpdata extends Component{
   
     kindApi.kindOneData(_id)
     .then((data)=>{
-        let {name}=data.data.list[0]
+       let {name}=data.list[0]
         this.setState({name})
     })
     }
@@ -21,9 +21,8 @@ class GoodsUpdata extends Component{
        console.log(_id)
      kindApi.kindUpdata(_id,name)
       .then((data)=>{
-        let {err,msg} =data.data
-       
-        if(err){return message.error(msg)}
+        let {err,msg} =data
+       if(err){return message.error(msg)}
       })
       this.props.history.replace('/admin/goodskind')
     }
@@ -32,7 +31,7 @@ class GoodsUpdata extends Component{
         let {name}=this.state
         return(
             <div >
-                <Card title='商品添加'>
+                <Card title='分类修改'>
                     名称:<input type='text' value={name} onChange={
                         (e)=>{this.setState({name:e.target.value})}
                     }/><br/> 
