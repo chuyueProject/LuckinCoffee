@@ -7,14 +7,12 @@ import GoodsKind from './pages/GoodsKind'
 import GoodsList from './pages/Goods/GoodsList'
 import GoodsAdd from './pages/Goods/GoodsAdd'
 import GoodsUpdate from './pages/Goods/GoodsUpdate'
-import Reg from './pages/Reg'
 import Login from './pages/Login'
 
 
 function App() {
   return (
     <HashRouter>
-      <Route path='/reg' component={Reg}></Route>
       <Route path='/login' component={Login}></Route>
       <Route path='/admin' render={() => {
         return (
