@@ -4,25 +4,21 @@ class Admin {
       let url = '/luckin/admin/user/login'
       return axios.post(url,payload)
     }
-    reg(payload){
-        let url = '/luckin/admin/user/reg'
-        return axios.post(url,payload)
-    }
     code(payload){
       let url = '/luckin/admin/user/getCode'
       return axios.post(url,payload)
     }
-    getUserList(payload){
+    getUserList(){
       let url = '/luckin/admin/user/getUserList'
-      return axios.post(url,payload)
+      return axios.post(url)
     }
     add({mail,pass}){
       let url = '/luckin/admin/user/add'
       return axios.post(url,{mail,pass})
     }
-    del(payload){
+    del(_id){
       let url ='/luckin/admin/user/del'
-      return axios.delete(url,payload)
+      return axios.post(url,{_id})
     }
   }
   
