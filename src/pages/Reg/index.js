@@ -25,7 +25,7 @@ class Reg extends Component {
           }else{
             // 登录成功获取token并且保存到localstorage里 
             localStorage.setItem('token',res.token)
-            message.success('注册成功，3s后跳转首页',3,()=>{
+            message.success('注册成功，2s后跳转首页',2,()=>{
               this.props.history.replace('/login')
             })
           }

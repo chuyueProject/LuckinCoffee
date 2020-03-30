@@ -1,4 +1,4 @@
-import axios from '../pages/utils/axios'
+import axios from "../utils/axios"
 class Goods {
     // 获取商品列表
     list(page = 1, pageSize = 3) {

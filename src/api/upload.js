@@ -1,4 +1,4 @@
-import axios from '../pages/utils/axios'
+import axios from "../utils/axios"
 class Upload {
     img(payload){
         let url ='/luckin/admin/upload/img'
