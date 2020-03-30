@@ -14,6 +14,7 @@ class Admin {
     }
     getUserList(payload){
       let url = '/luckin/admin/user/getUserList'
+      console.log(payload)
       return axios.post(url,payload)
     }
     add({mail,pass}){
