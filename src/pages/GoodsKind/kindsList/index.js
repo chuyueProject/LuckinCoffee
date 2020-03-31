@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Table Tag, Popconfirm, Button, message, Card ,Spin} from 'antd';
+import { Table, Tag, Popconfirm, Button, message, Card ,Spin} from 'antd';
 import kindsApi from '../../../api/kinds'
 class GoodsKind extends Component {
   state = {  
