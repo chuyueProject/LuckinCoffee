@@ -16,7 +16,7 @@ class Admin extends Component {
         {/* style={ {background:'#fff'} } */}
         <Layout >
           <Header  >
-            <h1 style={{ color:' rgba(255, 255, 255, 0.65)' }}>欢迎来到瑞幸咖啡管理后台！</h1>
+            <h1 style={{ color:' rgba(255, 255, 255, 0.65)'}}>&nbsp;&nbsp;&nbsp;&nbsp;欢迎来到瑞幸咖啡管理后台！</h1>
           </Header>
           <Content >
             {this.props.children}
