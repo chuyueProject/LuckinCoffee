@@ -4,7 +4,7 @@ import { Form, Icon, Input, Button, Checkbox,message } from 'antd';
 import style from './index.module.less'
 class Login extends Component {
   login=()=>{
-    console.log('登录',this)
+    // console.log('登录',this)
     let {validateFields} = this.props.form //用户获取表单数据的值
     // 获取输入值不管是否满足条件
     // let result = getFieldsValue()

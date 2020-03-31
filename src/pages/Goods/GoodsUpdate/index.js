@@ -79,7 +79,7 @@ class GoodsUpdate extends Component {
 
 
     render() {
-        let { Chinesename, Englishname, price, oldprice, desc, temp, cream, picture, kind, types ,putaway} = this.state
+        let { Chinesename, Englishname, price, oldprice, desc, picture, kind, types ,putaway} = this.state
         return (
             <div className={Style.box}>
                 <Card title='商品修改' className={Style.card}>
@@ -134,7 +134,7 @@ class GoodsUpdate extends Component {
                     </select><br />
 
                     图片：<input type='file' ref='img' /> <button onClick={this.upload}>上传图片</button>
-                    <img width='120' height='80' src={'http://localhost:3000' + picture} /> <br />
+                    <img alt='' width='120' height='80' src={'http://localhost:3000' + picture  } /> <br />
 
                     <Button onClick={this.update} type='primary'>修改</Button>
                 </Card>

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Card, Button, message, List } from 'antd'
+import { Card, Button, message } from 'antd'
 import Style from './index.module.less'
 import goodsApi from '../../../api/goods'
 import uploadApi from '../../../api/upload'
@@ -39,7 +39,7 @@ class GoodsAdd extends Component {
 
     submit = async () => {
         // console.log(this.state)
-        let { err, msg, errInfo } = await goodsApi.add(this.state)
+        let { err, msg } = await goodsApi.add(this.state)
         // console.log(errInfo)
         if (!this.state.picture) { return message.error(('请先上传图片')) }
         if (err === 0) {
@@ -60,7 +60,7 @@ class GoodsAdd extends Component {
 
 
     render() {
-        let { Chinesename, Englishname, price, desc, temp, cream, picture, types, kind, oldprice,putaway } = this.state
+        let { Chinesename, Englishname, price, desc, picture, types, kind, oldprice,putaway } = this.state
         return (
             <div className={Style.box}>
                 <Card title='商品添加' className={Style.card}>

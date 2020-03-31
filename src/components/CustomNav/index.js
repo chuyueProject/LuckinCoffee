@@ -31,7 +31,7 @@ class CustomNav extends Component {
         )
       }else{
         return(
-        <Menu.Item key={item.key} path={item.path}>
+        <Menu.Item key={item.key} path={item.path} >
 
           {item.title}
         </Menu.Item>
@@ -41,7 +41,7 @@ class CustomNav extends Component {
   }
   render(){
     return(
-    <Menu onClick={handleClick.bind(this)} style={{ width: 200 }} mode="vertical" theme='dark'>
+    <Menu onClick={handleClick.bind(this)} style={{ width: 200,marginTop:50 ,}} mode="vertical" theme='dark'>
       {this.renderItem(menuList)}
     </Menu>
     )

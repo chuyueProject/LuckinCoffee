@@ -1,5 +1,6 @@
 import React,{Component} from 'react'
-import {Card,message} from 'antd'
+import {Card,Button} from 'antd'
+import Style from './index.module.less'
 
 import kindsApi from '../../../api/kinds'
 class kindsAdd extends Component{
@@ -22,13 +23,13 @@ class kindsAdd extends Component{
         let {name}=this.state
         return(
             <div >
-                <Card title='分类添加'>
+                <Card title='分类添加' className={Style.Card}>
                     名称:<input type='text' value={name} onChange={
                         (e)=>{this.setState({name:e.target.value})}
                     }/><br/> 
-                   <button onClick={()=>{
+                   <Button onClick={()=>{
                        this.submit()
-                   }}>添加</button>
+                   }}>添加</Button>
                 </Card>
             </div>
         )

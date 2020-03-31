@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import { Card, Table, Button, Pagination, message, Tag, Popconfirm } from 'antd'
+import { Card, Table, Button, Pagination, message, Tag, Popconfirm, Spin } from 'antd'
 import Style from './index.module.less'
 import goodsApi from '../../../api/goods'
 class Goods extends Component {
   state = {
+    spinning:false,
     page: 1,
     pageSize: 3,
     list: [],
@@ -42,7 +43,7 @@ class Goods extends Component {
       {
         title: '图片', dataIndex: 'picture', key: 'picture', width: 120, render(picture) {
           let url = 'http://localhost:3000' + picture
-          return (<img width='150' height='80' src={url} />)
+          return (<img width='150' height='80' src={url} alt=''/>)
         }
       },
       {
@@ -59,7 +60,7 @@ class Goods extends Component {
               <Popconfirm title='你确定要修改该商品的状态嘛?'
                 onConfirm={() => { this.putAwayGodds(recode._id, recode.putaway) }}
               >
-                <Button type='warn' size='small'>上架</Button>
+                <Button type='warning' size='small'>上架</Button>
               </Popconfirm>
               {/* 修改 */}
               <Popconfirm title='你确定要更新该商品吗?'
@@ -73,14 +74,14 @@ class Goods extends Component {
     ]
   }
   //修改putaway 
-  putAwayGodds = async (_id,putaway)=>{
-    if(putaway ===0||putaway === -1){
+  putAwayGodds = async (_id, putaway) => {
+    if (putaway === 0 || putaway === -1) {
       putaway = 1
-    }else{
+    } else {
       putaway = -1
     }
-    let {err,msg} = await goodsApi.putaway(_id,putaway)
-    if(err){ return message.error(msg)}
+    let { err, msg } = await goodsApi.putaway(_id, putaway)
+    if (err) { return message.error(msg) }
     this.getListData()
   }
   // 删除商品
@@ -93,15 +94,12 @@ class Goods extends Component {
   }
   // 获取商品列表（分页）
   getListData = async () => {
+    this.setState({spinning:true})
     let { page, pageSize } = this.state
-    console.log(page,pageSize)
-    let result =await goodsApi.list(page, pageSize)
-    console.log(result)
-    let { err, msg, list, allCount } =result
-    // let { err, msg, list, allCount } = await goodsApi.list(page, pageSize)
+    let result = await goodsApi.list(page, pageSize)
+    let { err, msg, list, allCount } = result
     if (err !== 0) { return message.error(msg) }
-    // console.log(list)
-    this.setState({ list, allCount })
+    this.setState({ list, allCount,spinning:false })
   }
   componentDidMount() {
     this.getListData()
@@ -111,20 +109,23 @@ class Goods extends Component {
     return (
       <div className={Style.box}>
         <Card title='商品列表' className={Style.card}>
-          <Button type="primary" className={Style.addButtom}
+          <Button type="primary"  icon="plus" className={Style.addButtom}
             onClick={() => {
               // console.log('this',this)
               this.props.history.push('/admin/goodsadd')
             }}
-          >添加商品</Button>
+          >添加</Button>
+          <Spin spinning={this.state.spinning}>
+            <Table
+              scroll={{ y: 300, x: 1100 }}
+              columns={columns}
+              dataSource={list}
+              rowKey="_id"
+              pagination={false}>
+            </Table>
+          </Spin>
 
-          <Table
-            scroll={{ y: 300, x: 1100 }}
-            columns={columns}
-            dataSource={list}
-            rowKey="_id"
-            pagination={false}>
-          </Table>
+
           <Pagination current={page} total={allCount} showQuickJumper pageSize={pageSize}
             onChange={(page, pageSize) => {
               // console.log(page)
