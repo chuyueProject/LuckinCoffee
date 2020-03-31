@@ -11,18 +11,18 @@ class Login extends Component {
     // console.log(result)
     // 校验输入的值
     validateFields((err,data)=>{
-      console.log(err,data)
+      // console.log(err,data)
       if(err){
         // 输入错误
         message.error('输入有误请重试')
       }else{
         api.login(data).then((res)=>{
-          console.log(res)
-          if(res.code === 404){
-            message.error('用户名密码错误')
+          // console.log(res)
+          if(res.err === -1){
+            message.error('用户名或密码错误')
           }else{
             // 登录成功获取token并且保存到localstorage里 
-            localStorage.setItem('token',res.token)
+            // localStorage.setItem('token',res.token)
             message.success('登录成功，3s后跳转首页',3,()=>{
               this.props.history.replace('/admin')
             })
@@ -42,26 +42,28 @@ class Login extends Component {
         {/* 用户名 */}
         <Form.Item>
           {/* userName 参数1获取第一个数据的key值 */}
-          {getFieldDecorator('userName',{
+          {getFieldDecorator('user',{
             rules:[{requied:true,message:'用户名必须存在'},
-            {pattern:/^[a-zA-Z0-9]+([-_.][a-zA-Z0-9]+)*@[a-zA-Z0-9]+([-_.][a-zA-Z0-9]+)*\.[a-z]{2,}$/,message:'请输入正确的邮箱'}
+            {min:3,message:'用户名最小长度3位'},
+            {max:9,message:'用户名最大长度9位'}
+            // {pattern:/^[a-zA-Z0-9]+([-_.][a-zA-Z0-9]+)*@[a-zA-Z0-9]+([-_.][a-zA-Z0-9]+)*\.[a-z]{2,}$/,message:'请输入正确的邮箱'}
           ]
           })(
-            <Input
+            <Input 
             prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
-            placeholder="mail"
+            placeholder="user"
             />
             )}
         </Form.Item>
         {/* 用户密码 */}
         <Form.Item>
-          {getFieldDecorator('passWord',{
+          {getFieldDecorator('pass',{
             rules:[{requied:true,message:'用户名必须存在'},
-            {min:3,message:'用户名最小长度3位'},
-            {max:9,message:'用户名最大长度9位'}
+            // {min:3,message:'密码最小长度6位'},
+            // {max:9,message:'最大长度9位'}
           ]
           })(
-            <Input
+            <Input 
             prefix={<Icon type="eye-invisible" style={{ color: 'rgba(0,0,0,.25)' }} />}
             placeholder="pass"
             />

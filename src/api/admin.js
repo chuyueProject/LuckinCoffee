@@ -12,9 +12,9 @@ class Admin {
       let url = '/luckin/admin/user/getUserList'
       return axios.post(url)
     }
-    add({mail,pass}){
+    add({user,pass}){
       let url = '/luckin/admin/user/add'
-      return axios.post(url,{mail,pass})
+      return axios.post(url,{user,pass})
     }
     del(_id){
       let url ='/luckin/admin/user/del'

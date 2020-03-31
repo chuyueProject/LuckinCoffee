@@ -15,9 +15,9 @@ class Admins extends Component {
         key: '_id', //key值
       },
       {
-        title: 'mail',
-        dataIndex: 'mail',
-        key: 'mail',
+        title: 'user',
+        dataIndex: 'user',
+        key: 'user',
       },
       {
         title: 'pass',
@@ -63,9 +63,9 @@ class Admins extends Component {
     // 做添加接口
     // 关闭模态框
     // 刷新界面
-    let mail= this.refs.us.value
+    let user= this.refs.us.value
     let pass = this.refs.ps.value
-    let result = await api.add({mail,pass})
+    let result = await api.add({user,pass})
     console.log(result)
     if (result.err!==0){ return notification.error({description:'管理员添加失败，请详细检查传输',message:'错误',duration:1.5})}
     notification.success({description:'管理员添ok，模态框即将关闭',message:'成功',duration:1.5})
@@ -109,7 +109,7 @@ class Admins extends Component {
           onOk={this.handleOk}
           onCancel={this.handleCancel}
         >
-          mail:<input type="text" ref='us'/><br/>
+          user:<input type="text" ref='us'/><br/>
           pass:<input type="text" ref='ps'/><br/>
         </Modal>
       </div>
