@@ -1,7 +1,7 @@
 import React from 'react';
 import { HashRouter, Route ,Redirect} from 'react-router-dom'
 import Admin from './pages/Admin'
-import User from './pages/User'
+import Discount from './pages/Discount'
 import Admins from './pages/Administrator'
 
 import GoodsList from './pages/Goods/GoodsList'
@@ -22,7 +22,7 @@ function App() {
         return (
           <Admin>
             <Redirect exact from='/' to ='/admin/goods'></Redirect>
-            <Route path='/admin/user' component={User}></Route>
+            <Route path='/admin/discount' component={Discount}></Route>
             <Route path='/admin/goods' component={GoodsList}></Route>
             <Route path='/admin/goodsadd' component={GoodsAdd}></Route>
             <Route path='/admin/goodsupdate/:id' component={GoodsUpdate}></Route>

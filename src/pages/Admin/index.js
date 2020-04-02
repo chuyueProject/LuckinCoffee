@@ -21,7 +21,7 @@ class Admin extends Component {
           <Content >
             {this.props.children}
           </Content>
-          <Footer > Design ©2020 Created by QianFeng</Footer>
+          <Footer> Design ©2020 Created by QianFeng</Footer>
         </Layout>
       </Layout>
     );

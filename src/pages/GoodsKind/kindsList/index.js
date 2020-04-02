@@ -7,14 +7,14 @@ class GoodsKind extends Component {
     spinning: false,
     list: [],
     columns: [
+      // {
+      //   title: 'id',
+      //   dataIndex: '_id',
+      //   key: '_id',
+      //   // width: 300,
+      // },
       {
-        title: 'id',
-        dataIndex: '_id',
-        key: '_id',
-        // width: 300,
-      },
-      {
-        title: '食物分类',
+        title: '商品分类',
         dataIndex: 'name',
         key: 'name',
         // width: 300,

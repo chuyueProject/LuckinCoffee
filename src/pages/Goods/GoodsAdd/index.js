@@ -8,15 +8,15 @@ import uploadApi from '../../../api/upload'
 class GoodsAdd extends Component {
     state = {
 
-        "Chinesename": "卡布奇诺瑞纳冰",
-        "Englishname": "Cappuccino Exfreezo",
-        "price": "15.4",
-        'oldprice': '28',
-        "desc": "好喝",
-        "temp": 0,
-        "cream": 0,
+        "Chinesename": "",
+        "Englishname": "",
+        "price": "",
+        'oldprice': '',
+        "desc": "",
         "picture": "111",
         "putaway": 0,
+        "temp":"1",
+        "cream":'0',
         "kind": "",
         'types': []
 
@@ -38,9 +38,9 @@ class GoodsAdd extends Component {
     }
 
     submit = async () => {
-        // console.log(this.state)
-        let { err, msg } = await goodsApi.add(this.state)
-        // console.log(errInfo)
+        console.log(this.state)
+        let { err, msg, errInfo} = await goodsApi.add(this.state)
+        console.log(errInfo)
         if (!this.state.picture) { return message.error(('请先上传图片')) }
         if (err === 0) {
             message.success(msg)
@@ -60,7 +60,8 @@ class GoodsAdd extends Component {
 
 
     render() {
-        let { Chinesename, Englishname, price, desc, picture, types, kind, oldprice,putaway } = this.state
+        let { Chinesename, Englishname, price, desc, picture, types, kind, oldprice, putaway } = this.state
+       
         return (
             <div className={Style.box}>
                 <Card title='商品添加' className={Style.card}>
@@ -103,7 +104,7 @@ class GoodsAdd extends Component {
 
                     类别：<select value={kind} onChange={(e) => {
 
-                        console.log('e.target.value', e.target.value)
+                        // console.log('e.target.value', e.target.value)
                         this.setState({ kind: e.target.value })
                     }}>
                         {types.map((item, index) => {
@@ -113,7 +114,7 @@ class GoodsAdd extends Component {
                     </select><br />
 
                     图片：<input type='file' ref='img' /> <button onClick={this.upload}>上传图片</button>
-                    <img width='120' height='80' src={'http://localhost:3000' + picture} /> <br />
+                    <img width='120' height='80' src={'http://39.107.254.157:3000' + picture} /> <br />
 
                     <Button onClick={this.submit} type='primary'>添加</Button>
                 </Card>

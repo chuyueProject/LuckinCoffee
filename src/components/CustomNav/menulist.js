@@ -27,9 +27,9 @@ export default[
   },
   {
     key:'4',
-    title:'用户管理',
-    icon:'user',
-    path:'/admin/user',
+    title:'优惠券管理',
+    icon:'discount',
+    path:'/admin/discount',
    },
   {
     key:'9',

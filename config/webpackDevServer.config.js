@@ -103,7 +103,7 @@ module.exports = function(proxy, allowedHost) {
     // `proxy` is run between `before` and `after` `webpack-dev-server` hooks
     proxy:{
       '/luckin':{
-        target:'http://localhost:3000/',
+        target:'http://39.107.254.157:3000/',
         changeOrigin:true,
         pathRewrite:{
           "^/luckin":''

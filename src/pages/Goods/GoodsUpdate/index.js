@@ -134,7 +134,7 @@ class GoodsUpdate extends Component {
                     </select><br />
 
                     图片：<input type='file' ref='img' /> <button onClick={this.upload}>上传图片</button>
-                    <img alt='' width='120' height='80' src={'http://localhost:3000' + picture  } /> <br />
+                    <img alt='' width='120' height='80' src={'http://39.107.254.157:3000' + picture  } /> <br />
 
                     <Button onClick={this.update} type='primary'>修改</Button>
                 </Card>

@@ -9,11 +9,11 @@ class Admins extends Component {
     visible:false,
     spinning:false,
     columns:[
-      {
-        title: 'id',   //显示
-        dataIndex: '_id',//数据索引字段
-        key: '_id', //key值
-      },
+      // {
+      //   title: 'id',   //显示
+      //   dataIndex: '_id',//数据索引字段
+      //   key: '_id', //key值
+      // },
       {
         title: 'user',
         dataIndex: 'user',
@@ -99,7 +99,7 @@ class Admins extends Component {
               this.setState({visible:true})
             }}>添加</Button>
             <Spin spinning={spinning}>
-              <Table dataSource={dataSource} columns={columns} rowKey='_id'></Table>
+              <Table dataSource={dataSource} columns={columns} rowKey='_id' pagination={false}></Table>
             </Spin>
          </Card>
          {/* 添加的模态框 */}

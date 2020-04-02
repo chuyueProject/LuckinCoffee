@@ -4,13 +4,13 @@ import Style from './index.module.less'
 import goodsApi from '../../../api/goods'
 class Goods extends Component {
   state = {
-    spinning:false,
+    spinning: false,
     page: 1,
     pageSize: 3,
     list: [],
     allCount: 0,
     columns: [
-      { title: '_id', dataIndex: '_id', key: '_id', width: 120 },
+      // { title: '_id', dataIndex: '_id', key: '_id', width: 120 },
       { title: '中文名称', dataIndex: 'Chinesename', key: 'Chinesename', width: 120 },
       { title: '英文名称', dataIndex: 'Englishname', key: 'Englishname', width: 120 },
       { title: '价格', dataIndex: 'price', key: 'price', width: 80 },
@@ -42,8 +42,8 @@ class Goods extends Component {
       },
       {
         title: '图片', dataIndex: 'picture', key: 'picture', width: 120, render(picture) {
-          let url = 'http://localhost:3000' + picture
-          return (<img width='150' height='80' src={url} alt=''/>)
+          let url = 'http://39.107.254.157:3000' + picture
+          return (<img width='150' height='80' src={url} alt='' />)
         }
       },
       {
@@ -94,12 +94,12 @@ class Goods extends Component {
   }
   // 获取商品列表（分页）
   getListData = async () => {
-    this.setState({spinning:true})
+    this.setState({ spinning: true })
     let { page, pageSize } = this.state
     let result = await goodsApi.list(page, pageSize)
     let { err, msg, list, allCount } = result
     if (err !== 0) { return message.error(msg) }
-    this.setState({ list, allCount,spinning:false })
+    this.setState({ list, allCount, spinning: false })
   }
   componentDidMount() {
     this.getListData()
@@ -109,7 +109,7 @@ class Goods extends Component {
     return (
       <div className={Style.box}>
         <Card title='商品列表' className={Style.card}>
-          <Button type="primary"  icon="plus" className={Style.addButtom}
+          <Button type="primary" icon="plus" className={Style.addButtom}
             onClick={() => {
               // console.log('this',this)
               this.props.history.push('/admin/goodsadd')
@@ -117,7 +117,9 @@ class Goods extends Component {
           >添加</Button>
           <Spin spinning={this.state.spinning}>
             <Table
-              scroll={{ y: 300, x: 1100 }}
+              className={Style.table}
+              style={{background:'green'}}
+              scroll={{ y: 300 , x: 1100 }}
               columns={columns}
               dataSource={list}
               rowKey="_id"
@@ -126,7 +128,7 @@ class Goods extends Component {
           </Spin>
 
 
-          <Pagination current={page} total={allCount} showQuickJumper pageSize={pageSize}
+          <Pagination className={Style.page} current={page} total={allCount} showQuickJumper pageSize={pageSize}
             onChange={(page, pageSize) => {
               // console.log(page)
               this.setState({ page }, () => {
